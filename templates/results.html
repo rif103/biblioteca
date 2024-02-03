@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block main %}
+<main class="search-grid">
+
+    <div id="first" class="search-flex">
+        <table>
+            {% if session["bookinfo"] %}
+            {% for book in session["bookinfo"] %}
+            <tr>
+
+            <div class="result-div space">
+
+                <div id="rimg" class="flex image-result">
+                    <img src="{{ book['imageLinks']['smallThumbnail'] }}" alt="stock image for {{ book['title'] }}">
+                </div>
+
+                <div class="result-description image-result">
+                    <ul class="styling-options result-description-ul">
+                    <a class="blue-off line-warp" href="{{ book['previewLink'] }}" target="_blank"><span class="book-name">{{ book['title'] }}</span></a>
+                    {% for name in book["authors"] %}
+                    <li><a href="/search?title=&author={{ name }}&isbn=" target="_blank" class="blue-off"><span>{{ name }}</span></a></li>
+                    {% endfor %}
+                    </ul>
+                    <p>Publish by {{ book["publisher"] }}, {{ book["publishedDate"] }} </p>
+                    <p>ISBN: {{ book["industryIdentifiers"][0]["identifier"] }}</p>
+                </div>
+                <div class="bookmark">
+                    <span data-isbn="{{ book['industryIdentifiers'][0]['identifier'] }}" data-active="true" class="b-mark-bt bt-mark b-mark btn-colors">Add to Bookmark</span>
+                    <span dtat-visible="true" style="display: none" class="b-mark-bt r-bt-mark b-mark btn-colors">Remove</span>
+                </div>
+
+            </div>
+
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <div class="result-div space no-bookmark">
+                <h3>No results found</h3>
+            </div>
+            {% endif %}
+        </table>
+
+    </div>
+
+    <div id="hearder-categories">
+
+        <h3>Categories </h3>
+
+        <div class="categories-div">
+            <ul>
+            {% for cat in session["categories"] %}
+
+            <li><a class="listanch" href="/search/subjects?subject={{ cat['sub'] }}" target="_blank"><span>{{ cat['sub'] }}</span></a></li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="/static/results.js"></script>
+{% endblock %}

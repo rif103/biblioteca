@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+
+
+{% block main %}
+<main>
+
+      <div class="testimonial-grid">
+      <div class="testimonial form-color m-height">
+
+          <form action="/search" class="book-lookup-form">
+
+
+              <div class="form-group">
+                <h4 id="info">Let's get started</h4>
+              </div>
+
+              <div class="form-group">
+                <label for="title"><span class="weight">Title</span></label>
+                <input name="title" type="text" class="input" autocomplete="off" autofocus placeholder="Enter Title">
+              </div>
+
+              <div class="form-group">
+                <label for="author"><span class="weight">Author</span></label>
+                <input name="author" type="text" class="input" autocomplete="off" placeholder="Enter Author">
+              </div>
+
+              <div class="form-group">
+                <label for="isbn"><span class="weight">ISBN</span></label>
+                <input name="isbn" type="text" class="input" autocomplete="off" placeholder="Enter ISBN">
+              </div>
+
+              <button id=button class="btn btn-primary" type="submit">Search</button>
+
+            </form>
+
+        </div>
+
+        <div class="testimonial m-height">
+          <img id="introimg" class="img-fluid" src="/static/bookcover.webp">
+          <div id="inropara">
+            <p id="introp" class="intro sty-color"><span class="bib">biblioteca:</span> Step into our refined online book haven. Discover books by Name, ISBN, or Author, and explore a diverse array of curated categories to find your next literary treasure.<strong class="weight"> Happy browsing!</strong>
+            </p>
+          </div>
+       </div>
+
+      </div>
+
+          <div id="sdiv" class="test slider-stuff">
+
+            <div id="slider" class="accordion-style">
+
+
+                    <div class="browse-flex browse-section">
+                      <span class="title weight">Scroll Categories</span>
+                      <i id="plus" class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i>
+                    </div>
+
+
+                    <div class="browse-flex browse-text">
+                      <span>For book lovers, this is your ideal spot with over 40 genres to choose from.</span>
+                    </div>
+
+              </div>
+
+            </div>
+
+            <div class="slider-stuff">
+              <div class="categories-scorller vertical-scroll">
+
+                {% for cat in session["categories"] %}
+
+                <div class="categories-media">
+                    <img src="{{ cat['img'] }}">
+                    <div class="mid">
+                    <a href="/search/subjects?subject={{ cat['sub'] }}"  target="_blank"><span>{{ cat['sub'] }}</span></a>
+                    </div>
+                </div>
+
+                {% endfor %}
+              </div>
+
+
+</main>
+{% endblock %}
+
+

@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block main %}
+<main class="my-books-main">
+<div class="setting-flex">
+
+    <div class="setting-fancy-btn" role="tablist" aria-labelledby="channel-name">
+        <button id="tab-1" role="tab" aria-controls="tabPanel-1" aria-selected="true" tabindex="0">Change Username</button>
+        <button id="tab-2" role="tab" aria-controls="tabPanel-2" aria-selected="false" tabindex="-1">Change Password</button>
+    </div>
+
+    <div class="tab-panels">
+        <div id="tabPanel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
+            <form action="/settings/username" id="username" class="book-lookup-form" method="post">
+
+
+                <div class="form-group">
+                    <label for="username"><span class="weight">New Username</span></label>
+                    <input name="username" type="text" class="input" autocomplete="off" autofocus placeholder="New Username" id="name">
+                    <span id="userfield" class="warn" hidden></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><span class="weight">Password</span></label>
+                    <input name="password" type="password" class="input" autocomplete="off" placeholder="Password" id="pass">
+                    <span id="passfield" class="warn" hidden></span>
+                </div>
+
+                <button id=buttonone class="btn btn-primary" type="submit">Submit</button>
+
+            </form>
+        </div>
+        <div id="tabPanel-2" hidden role="tabpanel" tabindex="0" aria-labelledby="tab-2" >
+            <form action="/settings/password" method="post" id="password" class="book-lookup-form">
+
+                <div class="form-group">
+                    <label for="current password"><span class="weight">Current Password</span></label>
+                    <input name="cpassword" id="cpassword" type="password" class="input" autocomplete="off" autofocus placeholder="Current Password">
+                    <span id="crrntpass" class="warn" hidden></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="New Password"><span class="weight">New Password</span></label>
+                    <input name="npassword" id="npassword" type="password" class="input" autocomplete="off" placeholder="New Password">
+                    <span id="cnwpass" class="warn" hidden></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Confirm Password"><span class="weight">Confirm Password</span></label>
+                    <input name="confirmpassword" id="confirmpassword" type="password" class="input" autocomplete="off" placeholder="Confirm Password">
+                    <span id="cnfrmpass" class="warn" hidden></span>
+                </div>
+
+                <button id=buttontwo class="btn btn-primary" type="submit">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+</main>
+{% endblock %}
+
+{% block script %}
+
+<script src="/static/settings.js"></script>
+
+{% endblock %}

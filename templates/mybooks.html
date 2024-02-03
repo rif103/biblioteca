@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+My books
+{% endblock %}
+
+{% block main %}
+<main class="my-books-main">
+    <div>
+        <h3>My Books:</h3>
+    </div>
+    <div class="search-flex">
+        {% if session["bookmarks"] %}
+
+        {% for books in session["bookmarks"] %}
+        <div class="result-div key-cool-frames">
+
+            <div id="rimg" class="flex image-result">
+                <img src="{{ books['imageLinks']['thumbnail'] }}" alt="stock image for {{ books['title'] }}">
+            </div>
+
+            <div class="result-description image-result">
+                <ul class="styling-options result-description-ul">
+                    <a class="blue-off line-warp" href="{{ books['previewLink'] }}" target="_blank"><span class="book-name">{{ books['title'] }}</span></a>
+                    {% for name in books["authors"] %}
+                    <li><a href="/search?title=&author={{ name }}&isbn=" target="_blank" class="blue-off"><span>{{ name }}</span></a></li>
+                    {% endfor %}
+                </ul>
+                <p>Published by {{ books['publisher'] }}, {{ books['publishedDate'] }}</p>
+                <p>ISBN: {{ books["industryIdentifiers"][0]["identifier"] }}</p>
+            </div>
+
+            <div>
+                <span data-isbn="{{ books['industryIdentifiers'][0]['identifier'] }}" class="b-mark-bt b-mark btn-colors r-bt-mark">Remove</span>
+            </div>
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="result-div space no-bookmark">
+            <h3>No Bookmarks Yet</h3>
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock%}
+
+{% block script %}
+<script src="/static/mybooks.js"></script>
+{% endblock %}

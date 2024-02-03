@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Log In
+{% endblock %}
+
+{% block main %}
+<main class="log-register-grid">
+
+
+            <div id="logimg" class="log-reg-img-div">
+                <image id="fancy" src="/static/image2.jpg"></image>
+            </div>
+
+            <div id="logform" class="log-reg-form-div">
+
+                <form action="/login" method="post" class="book-lookup-form log-reg-form">
+
+                    <div class="form-group">
+                        <h4>Log In</h4>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Username"><span class="weight">Username</span></label>
+                        <input autocomplete="off" autofocus class="input" name="username" placeholder="Username" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><span class="weight">Password</span></label>
+                        <input autocomplete="off" autofocus class="input" name="password" placeholder="Password" type="password">
+                    </div>
+
+                    <button id="buttonthree" class="btn btn-primary" type="submit">Log In</button>
+
+                    <p id="signup">Don't have an account? <a id="atag" href="/signup"><span class="weight">Sign Up!</span></a></p>
+
+                </form>
+
+            </div>
+
+</main>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+
+            if (window.innerWidth >= 561){
+
+                const brandLogo = document.querySelector(".primary-header");
+                brandLogo.classList.remove("primary-header");
+                brandLogo.classList.remove("flex");
+                brandLogo.classList.add("nav-grid");
+            }
+
+
+    })
+</script>
+{% endblock %}
